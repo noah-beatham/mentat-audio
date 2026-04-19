@@ -19,4 +19,5 @@ exec librespot \
     --bitrate 320 \
     --onevent "$EVENT_SCRIPT" \
     --disable-audio-cache \
-    --initial-volume 100
+    --initial-volume 100 \
+    ${SPOTIFY_CLIENT_ID:+--client-id "$SPOTIFY_CLIENT_ID"}

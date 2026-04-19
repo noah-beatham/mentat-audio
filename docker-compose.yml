@@ -23,6 +23,7 @@ services:
       DEVICE_NAME: "Living Room"
       PIPE_PATH: /srv/pipes/lr.pipe
       EVENT_SCRIPT: /scripts/event-lr.sh
+      SPOTIFY_CLIENT_ID: ${SPOTIFY_CLIENT_ID}
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
@@ -40,6 +41,7 @@ services:
       DEVICE_NAME: "Living Room + Noah"
       PIPE_PATH: /srv/pipes/all.pipe
       EVENT_SCRIPT: /scripts/event-all.sh
+      SPOTIFY_CLIENT_ID: ${SPOTIFY_CLIENT_ID}
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
