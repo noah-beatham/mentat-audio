@@ -15,6 +15,8 @@ case "$PLAYER_EVENT" in
     playing)
         echo "[lr] playing — selecting Living Room speakers"
         /scripts/set-speakers.sh "$LR_PATTERN"
+        # Log all env vars so we can see what librespot 0.8.0 exposes
+        env | grep -v '^PATH\|^HOME\|^USER\|^SHELL' | sort > /tmp/librespot-event.log
         ;;
     stopped)
         echo "[lr] stopped"
