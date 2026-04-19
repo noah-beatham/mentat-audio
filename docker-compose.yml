@@ -27,6 +27,7 @@ services:
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
+      - ./scripts/librespot-entrypoint.sh:/entrypoint.sh
     depends_on:
       - owntone
     restart: unless-stopped
@@ -45,6 +46,7 @@ services:
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
+      - ./scripts/librespot-entrypoint.sh:/entrypoint.sh
     depends_on:
       - owntone
       - librespot-lr
