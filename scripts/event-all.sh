@@ -10,7 +10,7 @@
 # Sonos room names are set in the Sonos app — adjust the pattern
 # to match whatever your rooms are called there.
 
-ALL_PATTERN="apple tv|kitchen|pc|bedroom"
+ALL_PATTERN="^judge$|^kitchen$|^pc$|^bedroom$"
 
 OWNTONE="http://127.0.0.1:3689"
 

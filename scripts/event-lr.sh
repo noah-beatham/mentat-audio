@@ -7,7 +7,7 @@
 #   curl -s http://localhost:3689/api/outputs | jq '.outputs[] | .name'
 # Then update LR_PATTERN below to match.
 
-LR_PATTERN="apple tv|kitchen"
+LR_PATTERN="^judge$|^kitchen$"
 
 OWNTONE="http://127.0.0.1:3689"
 
