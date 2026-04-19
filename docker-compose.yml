@@ -45,6 +45,7 @@ services:
       - ./scripts:/scripts
     depends_on:
       - owntone
+      - librespot-lr
     restart: unless-stopped
 
 volumes:
