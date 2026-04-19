@@ -19,7 +19,10 @@ case "$PLAYER_EVENT" in
     playing)
         echo "[all] playing — selecting all speakers"
         /scripts/set-speakers.sh "$ALL_PATTERN"
-        /scripts/write-metadata.sh "$METADATA_PIPE"
+        # Write track state for metadata-daemon to pick up
+        printf 'NAME=%s\nARTIST=%s\nALBUM=%s\nCOVER=%s\nTRACK_ID=%s\n' \
+            "${NAME}" "${ARTISTS%%$'\n'*}" "${ALBUM}" "${COVERS%%$'\n'*}" "${TRACK_ID}" \
+            > /tmp/nowplaying_all.pipe
         ;;
     stopped)
         echo "[all] stopped"

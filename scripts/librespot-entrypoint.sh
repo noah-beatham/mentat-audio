@@ -18,6 +18,9 @@ fi
 
 chmod +x /scripts/*.sh
 
+# Start metadata daemon in background to keep the metadata FIFO write-end open
+/scripts/metadata-daemon.sh "$PIPE_PATH" &
+
 echo "[librespot] Starting as \"$DEVICE_NAME\" -> $PIPE_PATH"
 
 exec librespot \
