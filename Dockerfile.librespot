@@ -1,0 +1,26 @@
+# Stage 1: build librespot from source
+# No default audio backends needed — we use the pipe backend which is always compiled in
+FROM rust:1-slim-bookworm AS builder
+
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN cargo install librespot --no-default-features
+
+# Stage 2: minimal runtime image
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y \
+    libssl3 \
+    ca-certificates \
+    curl \
+    jq \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /usr/local/cargo/bin/librespot /usr/local/bin/librespot
+COPY scripts/librespot-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

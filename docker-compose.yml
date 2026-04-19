@@ -1,0 +1,53 @@
+services:
+  owntone:
+    image: owntone/owntone:latest
+    container_name: audio-owntone
+    network_mode: host
+    environment:
+      UID: 1000
+      GID: 1000
+    volumes:
+      - ./owntone/owntone.conf:/etc/owntone/owntone.conf:ro
+      - ./pipes:/srv/pipes
+      - /var/run/dbus:/var/run/dbus
+      - owntone-data:/var/cache/owntone
+    restart: unless-stopped
+
+  librespot-lr:
+    build:
+      context: .
+      dockerfile: Dockerfile.librespot
+    container_name: audio-lr
+    network_mode: host
+    environment:
+      DEVICE_NAME: "Mentat - Living Room"
+      PIPE_PATH: /srv/pipes/lr.pipe
+      EVENT_SCRIPT: /scripts/event-lr.sh
+    volumes:
+      - ./pipes:/srv/pipes
+      - ./scripts:/scripts
+      - /var/run/dbus:/var/run/dbus
+    depends_on:
+      - owntone
+    restart: unless-stopped
+
+  librespot-all:
+    build:
+      context: .
+      dockerfile: Dockerfile.librespot
+    container_name: audio-all
+    network_mode: host
+    environment:
+      DEVICE_NAME: "Mentat - All"
+      PIPE_PATH: /srv/pipes/all.pipe
+      EVENT_SCRIPT: /scripts/event-all.sh
+    volumes:
+      - ./pipes:/srv/pipes
+      - ./scripts:/scripts
+      - /var/run/dbus:/var/run/dbus
+    depends_on:
+      - owntone
+    restart: unless-stopped
+
+volumes:
+  owntone-data:
