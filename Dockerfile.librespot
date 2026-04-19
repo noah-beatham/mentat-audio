@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN cargo install librespot --version "=0.5.0" --locked --no-default-features
+RUN cargo install librespot --locked --no-default-features
 
 # Stage 2: minimal runtime image
 FROM debian:bookworm-slim
