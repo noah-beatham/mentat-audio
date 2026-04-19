@@ -8,6 +8,7 @@
 # Then update LR_PATTERN below to match.
 
 LR_PATTERN="^judge$|^kitchen$"
+METADATA_PIPE="/srv/pipes/lr.pipe.metadata"
 
 OWNTONE="http://127.0.0.1:3689"
 
@@ -15,8 +16,7 @@ case "$PLAYER_EVENT" in
     playing)
         echo "[lr] playing — selecting Living Room speakers"
         /scripts/set-speakers.sh "$LR_PATTERN"
-        # Log all env vars so we can see what librespot 0.8.0 exposes
-        env | grep -v '^PATH\|^HOME\|^USER\|^SHELL' | sort > /tmp/librespot-event.log
+        /scripts/write-metadata.sh "$METADATA_PIPE"
         ;;
     stopped)
         echo "[lr] stopped"

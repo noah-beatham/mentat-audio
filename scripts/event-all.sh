@@ -11,6 +11,7 @@
 # to match whatever your rooms are called there.
 
 ALL_PATTERN="^judge$|^kitchen$|^pc$|^bedroom$"
+METADATA_PIPE="/srv/pipes/all.pipe.metadata"
 
 OWNTONE="http://127.0.0.1:3689"
 
@@ -18,6 +19,7 @@ case "$PLAYER_EVENT" in
     playing)
         echo "[all] playing — selecting all speakers"
         /scripts/set-speakers.sh "$ALL_PATTERN"
+        /scripts/write-metadata.sh "$METADATA_PIPE"
         ;;
     stopped)
         echo "[all] stopped"
