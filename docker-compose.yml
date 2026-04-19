@@ -26,7 +26,6 @@ services:
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
-      - /var/run/dbus:/var/run/dbus
     depends_on:
       - owntone
     restart: unless-stopped
@@ -44,7 +43,6 @@ services:
     volumes:
       - ./pipes:/srv/pipes
       - ./scripts:/scripts
-      - /var/run/dbus:/var/run/dbus
     depends_on:
       - owntone
     restart: unless-stopped
