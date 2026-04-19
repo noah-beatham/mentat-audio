@@ -8,7 +8,7 @@ if [ ! -p "$PIPE_PATH" ]; then
     chmod 666 "$PIPE_PATH"
 fi
 
-chmod +x "$EVENT_SCRIPT"
+chmod +x /scripts/*.sh
 
 echo "[librespot] Starting as \"$DEVICE_NAME\" -> $PIPE_PATH"
 
